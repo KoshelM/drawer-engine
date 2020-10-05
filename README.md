@@ -15,10 +15,7 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
+### Test Data
 ```
-npm run lint
+Test data you can find in "test-data" folder
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
