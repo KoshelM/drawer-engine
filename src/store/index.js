@@ -31,11 +31,17 @@ export default new Vuex.Store({
                 Object.assign(column, newColumn)
             else
                 state.mapping.push(newColumn)
+        },
+        setFieldValue(state, {fieldToBind, newValue}){
+            state.sourceData[fieldToBind] = newValue
         }
     },
     getters: {
         sourceData(state) {
             return state.sourceData
+        },
+        mapping(state) {
+            return state.mapping
         },
         getFieldValue: (state) => (fieldToBind) => {
             return state.sourceData[fieldToBind]
@@ -44,11 +50,11 @@ export default new Vuex.Store({
             let maxRowIndex = 0
             let maxColumnIndex = 0
 
-            state.mapping.map(m => {
+            state.mapping && state.mapping.length && state.mapping.map(m => {
                 if (m.rowIndex > maxRowIndex)
-                    maxRowIndex = m.rowIndex
+                    maxRowIndex = Number(m.rowIndex)
                 if (m.columnIndex > maxColumnIndex)
-                    maxColumnIndex = m.columnIndex
+                    maxColumnIndex = Number(m.columnIndex)
             })
 
             return {
@@ -58,7 +64,7 @@ export default new Vuex.Store({
         },
         getFieldMapping(state) {
             return (rowIndex, columnIndex) => {
-                return state.mapping.find(x => { return x.rowIndex === rowIndex && x.columnIndex === columnIndex })
+                return state.mapping.find(x => { return Number(x.rowIndex) === rowIndex && Number(x.columnIndex) === columnIndex })
             }
         }
     }

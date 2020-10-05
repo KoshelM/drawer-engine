@@ -1,4 +1,4 @@
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
     props: ['fieldToBind'],
     computed: {
@@ -11,5 +11,8 @@ export default {
                 this.setFieldValue({fieldToBind: this.fieldToBind, newValue})
             }
         }
-    }
+    },
+    methods: {
+        ...mapMutations(['setFieldValue'])
+    },
 }

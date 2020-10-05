@@ -1,40 +1,46 @@
 <template>
   <div id="app">
-    <div class="upload">
-    <FileControl :label="'Mapping'"/>
-    <FileControl :label="'Source Data'"/>
+    <div
+      class="upload"
+      v-if="!Object.keys(sourceData).length || !Object.keys(mapping).length"
+    >
+      <FileControl @onFileSelect="setMapping" :prepareResults="prepareResults" :label="'Mapping'" />
+      <FileControl @onFileSelect="setSourceData" :prepareResults="prepareResults" :label="'Source Data'" />
     </div>
-    <div class="tables">
-      <h1>Table 1</h1>
-      <Table></Table>
-      <h1>Table 2</h1>
-      <Table></Table>
+    <div class="content" v-else>
+      <div class="tables">
+        <h1>Table 1</h1>
+        <Table></Table>
+        <h1>Table 2</h1>
+        <Table></Table>
+      </div>
+      <AddControl></AddControl>
     </div>
-    <AddControl></AddControl>
   </div>
 </template>
 
 <script>
-import Table from "./components/table";
+import Table from "./components/table/table";
 import AddControl from "./components/add-control";
-import mapping from "./input/mapping";
-import sourceData from "./input/sourceData";
-import FileControl from './components/file-control'
-import { mapMutations } from "vuex";
+import FileControl from "./components/file-control";
+import { mapMutations, mapGetters } from "vuex";
 
 export default {
   name: "App",
   components: {
     Table,
     AddControl,
-    FileControl
+    FileControl,
   },
-  created() {
-    this.setSourceData(sourceData);
-    this.setMapping(mapping);
+  computed: {
+    ...mapGetters(["sourceData", "mapping"]),
   },
   methods: {
-    ...mapMutations(['setSourceData', 'setMapping']),
+    ...mapMutations(["setSourceData", "setMapping"]),
+    prepareResults(jsonResult) {
+      delete jsonResult["#text"];
+      return jsonResult.element || jsonResult;
+    },
   },
 };
 </script>
@@ -47,10 +53,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-
 </style>

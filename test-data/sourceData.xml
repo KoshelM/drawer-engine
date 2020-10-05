@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<comboboxData>
+		<options>
+			<label>Radio A</label>
+			<value>radio_a</value>
+		</options>
+		<options>
+			<label>Radio B</label>
+			<value>radio_b</value>
+		</options>
+		<options>
+			<label>Radio C</label>
+			<value>radio_c</value>
+		</options>
+		<selected>radio_b</selected>
+	</comboboxData>
+	<maks>maks</maks>
+	<radioData>
+		<options>
+			<label>Radio A</label>
+			<value>radio_a</value>
+		</options>
+		<options>
+			<label>Radio B</label>
+			<value>radio_b</value>
+		</options>
+		<options>
+			<label>Radio C</label>
+			<value>radio_c</value>
+		</options>
+		<selected>radio_b</selected>
+	</radioData>
+	<testdata1>1</testdata1>
+	<testdata2>2</testdata2>
+	<testdata3>3</testdata3>
+	<testdata4>4</testdata4>
+	<testdata5>5</testdata5>
+	<testdata6>6</testdata6>
+	<testdata7>7</testdata7>
+	<testdata8>8</testdata8>
+</root>

@@ -5,7 +5,7 @@
         <tr v-for="rowIndex in dataBoundary.maxRowIndex" :key="rowIndex">
           <td
             v-for="columnIndex in dataBoundary.maxColumnIndex"
-            :key="columnIndex"
+            :key="columnIndex * rowIndex"
           >
             <ControlWrapper :control="getFieldMapping(rowIndex, columnIndex)" />
           </td>
@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-import ControlWrapper from "../components/controls/controlWrapper";
+import ControlWrapper from "./controls/controlWrapper";
 import { mapGetters } from "vuex";
 
 export default {
